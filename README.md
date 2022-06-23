@@ -25,35 +25,35 @@ Note that running the commands below require having a directory called *saplogs*
 
 **MAML**
 
-nohup python -u main.py --problem sine --k 5 --k_test 50 --model maml --model_spec fmaml --cpu --val_after 2500 --second_order --T 1 --runs 5 --validate --meta_batch_size 4 > saplogs/sine/sine-maml-k5.log &
+nohup python -u main.py --problem sine --N 1 --k 5 --k_test 50 --model maml --model_spec fmaml --cpu --val_after 2500 --second_order --T 1 --runs 5 --validate --meta_batch_size 4 > saplogs/sine/sine-maml-k5.log &
 
-nohup python -u main.py --problem sine --k 10 --k_test 50 --model maml --model_spec fmaml --cpu --val_after 2500 --second_order --T 1 --runs 5 --validate --meta_batch_size 4 > saplogs/sine/sine-maml-k10.log &
+nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model maml --model_spec fmaml --cpu --val_after 2500 --second_order --T 1 --runs 5 --validate --meta_batch_size 4 > saplogs/sine/sine-maml-k10.log &
 
 
 **T-Net**
 
-nohup python -u main.py --problem sine --k 5 --k_test 50 --model sap --model_spec ftnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet > saplogs/sine/sine-tnet-k5.log &
+nohup python -u main.py --problem sine --N 1 --k 5 --k_test 50 --model sap --model_spec ftnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet > saplogs/sine/sine-tnet-k5.log &
  
-nohup python -u main.py --problem sine --k 10 --k_test 50 --model sap --model_spec ftnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet > saplogs/sine/sine-tnet-k10.log &
+nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model sap --model_spec ftnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet > saplogs/sine/sine-tnet-k10.log &
 
 
 **MT-Net**
 
-nohup python -u main.py --problem sine --k 5 --k_test 50 --model sap --model_spec fmtnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet --use_grad_mask > saplogs/sine/sine-mtnet-k5.log &
+nohup python -u main.py --problem sine --N 1 --k 5 --k_test 50 --model sap --model_spec fmtnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet --use_grad_mask > saplogs/sine/sine-mtnet-k5.log &
  
-nohup python -u main.py --problem sine --k 10 --k_test 50 --model sap --model_spec fmtnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet --use_grad_mask > saplogs/sine/sine-mtnet-k10.log &
+nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model sap --model_spec fmtnet --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --reg null --validate --meta_batch_size 4 --tnet --use_grad_mask > saplogs/sine/sine-mtnet-k10.log &
 
 
 **SAP**
 
-nohup python -u main.py --problem sine --k 5 --k_test 50 --model sap --model_spec fsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 > saplogs/sine/sine-sap-svd-k5.log &
+nohup python -u main.py --problem sine --N 1 --k 5 --k_test 50 --model sap --model_spec fsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 > saplogs/sine/sine-sap-svd-k5.log &
  
-nohup python -u main.py --problem sine --k 10 --k_test 50 --model sap --model_spec fsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 > saplogs/sine/sine-sap-svd-k10.log &
+nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model sap --model_spec fsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 > saplogs/sine/sine-sap-svd-k10.log &
 
 
-nohup python -u main.py --problem sine --k 5 --k_test 50 --model sap --model_spec fmsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 --use_grad_mask > saplogs/sine/sine-msap-svd-k5.log &
+nohup python -u main.py --problem sine --N 1 --k 5 --k_test 50 --model sap --model_spec fmsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 --use_grad_mask > saplogs/sine/sine-msap-svd-k5.log &
  
-nohup python -u main.py --problem sine --k 10 --k_test 50 --model sap --model_spec fmsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 --use_grad_mask > saplogs/sine/sine-msap-svd-k10.log &
+nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model sap --model_spec fmsap-svd --cpu --val_after 2500 --second_order --T 1 --gamma 0 --runs 5 --learn_alfas --reg null --svd --validate --meta_batch_size 4 --use_grad_mask > saplogs/sine/sine-msap-svd-k10.log &
 
 
 ### Few-shot image classification
