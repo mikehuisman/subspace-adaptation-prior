@@ -57,3 +57,8 @@ nohup python -u main.py --problem sine --k 10 --k_test 50 --model sap --model_sp
 
 
 ## Few-shot image classification
+
+
+
+# Questions or feedback?
+In case you have any questions or feedback, feel free to reach out to m.huisman@liacs.leidenuniv.nl 
