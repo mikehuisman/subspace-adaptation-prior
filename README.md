@@ -1,4 +1,4 @@
-# Subspace Adaptation Prior
+# Subspace Adaptation Prior for Few-Shot Learning
 
 This is the Github repository accompanying the paper titled *Subspace Adaptation Prior for Few-Shot Learning*. Here, you find the code that we have used for our experiments and instructions on how to reproduce the results. 
 
