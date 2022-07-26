@@ -58,6 +58,110 @@ nohup python -u main.py --problem sine --N 1 --k 10 --k_test 50 --model sap --mo
 
 ### Few-shot image classification
 
+#### miniImageNet
+
+**MAML**: 
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model maml --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final --second_order --grad_clip 10 --out_channels 32  --train_iters 240000 
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model maml --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final --second_order --grad_clip 10 --out_channels 32  --train_iters 120000 
+
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model maml --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final-64c--second_order --grad_clip 10 --out_channels 64  --train_iters 240000 --cross_eval
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model maml --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64  --train_iters 120000 --cross_eval
+
+
+
+**T-Net** (c=32,64): 
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-$2c --second_order --grad_clip 10 --out_channels $2 --tnet --gamma 0 --reg null  --train_iters 240000 --cross_eval
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-$2c --second_order --grad_clip 10 --out_channels $2 --tnet --gamma 0 --reg null  --train_iters 120000 --cross_eval
+
+
+
+**MT-Net** (c=32,64):  
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-$2c --second_order --grad_clip 10 --out_channels $2 --tnet --gamma 0 --reg null  --train_iters 240000 --use_grad_mask --cross_eval
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-$2c --second_order --grad_clip 10 --out_channels $2 --tnet --gamma 0 --reg null  --train_iters 120000 --use_grad_mask --cross_eval
+
+
+
+**WarpGrad**:
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --val_after 2500 --T 5 --k $1 --k_train 5 --N 5 --T_test 5 --T_val 5 --meta_batch_size 1 --runs 1 --single_run --base_lr 0.1 --model_spec warpgrad-reproduce-final-lr0.1-c64 --second_order --out_channels 64 --transform_out_channels 64 --tnet --gamma 0 --reg null --warpgrad --use_bias --validate --train_iters 60000  --seed $2 --cross_eval
+
+python -u main.py --problem min --k_test 16  --backbone conv4 --model sap --val_after 2500 --T 5 --k $1 --k_train 5 --N 5 --T_test 5 --T_val 5 --meta_batch_size 1 --runs 1 --single_run --base_lr 0.1 --model_spec warpgrad-reproduce-final-lr0.1-c32 --second_order --out_channels 32 --transform_out_channels 32 --tnet --gamma 0 --reg null --warpgrad --use_bias --validate --train_iters 60000  --seed $2 --cross_eval
+
+**SAP**:
+python -u main.py --problem min --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-T1-MBS4 --linear_transform --val_after 2500 --second_order --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 10 --meta_batch_size 4 --T_val 10 --channel_scale --svd --grad_clip 10 --old --base_lr 0.0360774985854036 --seed $1 --single_run --validate --cross_eval  
+
+
+python -u main.py --problem min --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-T1-MBS4-32c --linear_transform --val_after 2500 --second_order --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 10 --meta_batch_size 4 --T_val 10 --channel_scale --svd --grad_clip 10 --old --base_lr 0.0360774985854036 --seed $1 --single_run --validate --cross_eval --out_channels 32  
+
+python -u main.py --problem min --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-T1-MBS4-32c-FO --linear_transform --val_after 2500 --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 10 --meta_batch_size 4 --T_val 10 --channel_scale --svd --grad_clip 10 --old --base_lr 0.0360774985854036 --seed $1 --single_run --validate --cross_eval --out_channels 32  
+
+
+#### tieredImageNet
+
+**MAML**: 
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model maml --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final --second_order --grad_clip 10 --out_channels 32  --train_iters 240000 --cross_eval 
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model maml --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final --second_order --grad_clip 10 --out_channels 32  --train_iters 120000 --cross_eval
+
+
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model maml --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64  --train_iters 240000 --cross_eval 
+
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model maml --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1  --base_lr 0.01 --model_spec maml-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64  --train_iters 120000 --cross_eval
+
+
+**T-Net** (c=32,64): 
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-32c --second_order --grad_clip 10 --out_channels 32 --tnet --gamma 0 --reg null  --train_iters 240000 --cross_eval
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-32c --second_order --grad_clip 10 --out_channels 32 --tnet --gamma 0 --reg null  --train_iters 120000 --cross_eval
+
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64 --tnet --gamma 0 --reg null  --train_iters 240000 --cross_eval
+
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec tnet-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64 --tnet --gamma 0 --reg null  --train_iters 120000 --cross_eval
+
+
+**MT-Net** (c=32,64):  
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-32c --second_order --grad_clip 10 --out_channels 32 --tnet --gamma 0 --reg null  --train_iters 240000 --use_grad_mask --cross_eval
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-32c --second_order --grad_clip 10 --out_channels 32 --tnet --gamma 0 --reg null  --train_iters 120000 --use_grad_mask --cross_eval
+
+
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 8000 --T 5 --k 1 --N 5 --T_test 10 --T_val 10 --meta_batch_size 4 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64 --tnet --gamma 0 --reg null  --train_iters 240000 --use_grad_mask --cross_eval
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --validate --val_after 4000 --T 5 --k 5 --N 5 --T_test 10 --T_val 10 --meta_batch_size 2 --runs 1 --single_run --seed $1 --base_lr 0.01 --model_spec mtnet-reproduce-final-64c --second_order --grad_clip 10 --out_channels 64 --tnet --gamma 0 --reg null  --train_iters 120000 --use_grad_mask --cross_eval
+
+
+
+
+**WarpGrad**:
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --val_after 2500 --T 5 --k $1 --k_train 5 --N 5 --T_test 5 --T_val 5 --meta_batch_size 1 --runs 1 --single_run --base_lr 0.1 --model_spec warpgrad-reproduce-final-lr0.1-64c --second_order --out_channels 64 --transform_out_channels 64 --tnet --gamma 0 --reg null --warpgrad --use_bias --validate --train_iters 60000  --seed $2 --cross_eval
+
+python -u main.py --problem tiered --k_test 16  --backbone conv4 --model sap --val_after 2500 --T 5 --k $1 --k_train 5 --N 5 --T_test 5 --T_val 5 --meta_batch_size 1 --runs 1 --single_run --base_lr 0.1 --model_spec warpgrad-reproduce-final-lr0.1-32c --second_order --out_channels 32 --transform_out_channels 32 --tnet --gamma 0 --reg null --warpgrad --use_bias --validate --train_iters 60000  --seed $2 --cross_eval
+
+
+**SAP**:
+
+python -u main.py --problem tiered --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-tiered --linear_transform --val_after 2500 --second_order --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 14 --meta_batch_size 3 --T_val 14 --channel_scale --svd --grad_clip 10 --old --base_lr 0.22697597398238528 --seed $1 --single_run --validate --train_iters 60000 --cross_eval  
+
+python -u main.py --problem tiered --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-tiered-c32 --linear_transform --val_after 2500 --second_order --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 14 --meta_batch_size 3 --T_val 14 --channel_scale --svd --grad_clip 10 --old --base_lr 0.22697597398238528 --seed $1 --single_run --validate --train_iters 60000 --cross_eval --out_channels 32  
+
+python -u main.py --problem tiered --N 5 --k $2 --k_test 16 --model sap --model_spec fsap-best-tiered-c32-FO --linear_transform --val_after 2500 --T 1 --gamma 0 --runs 1 --learn_alfas --reg null --T_test 14 --meta_batch_size 3 --T_val 14 --channel_scale --svd --grad_clip 10 --old --base_lr 0.22697597398238528 --seed $1 --single_run --validate --train_iters 60000 --cross_eval --out_channels 32  
 
 
 ## Questions or feedback?
